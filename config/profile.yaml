@@ -1,49 +1,24 @@
 # =====================================================================
-#  PERFIL DE BUSQUEDA
-#
-#  Este es el UNICO archivo que necesitas tocar para cambiar criterios.
-#  No hace falta saber programar. Solo dos reglas:
-#    1. Respeta los espacios del principio de cada linea (la sangria).
-#    2. Las listas empiezan con un guion y un espacio:  - asi
-#  Si un texto lleva acentos, comas o dos puntos, ponlo entre comillas.
+#  PERFIL DE BUSQUEDA — Marly Astudillo
+#  Supply Chain, Operaciones, Logistica y Analisis de Datos
 # =====================================================================
 
-# ---------------------------------------------------------------------
-# SALARIO
-# Importante: el salario NO se usa para descartar ofertas, solo para
-# etiquetarlas. La mayoria de ofertas espanolas no publican sueldo y no
-# queremos perderlas.
-# ---------------------------------------------------------------------
 salario:
-  # Valor de ejemplo. El tuyo real ponlo en el secreto de GitHub
-  # SALARIO_NETO_MINIMO: si existe, tiene prioridad sobre este numero.
-  # Asi tu salario no queda publicado en un repositorio publico.
-  neto_mensual_minimo: 1200      # por debajo de esto -> "no cumple"
+  neto_mensual_minimo: 1200      # tu valor real va en el secreto SALARIO_NETO_MINIMO
+  pagas_anuales: 12               # Ecuador/Canada no usan 14 pagas como Espana
+  factor_neto_a_bruto: 1.15       # PENDIENTE DE CALIBRAR con tus propios numeros
 
-  # Conversion aproximada de neto mensual a bruto anual.
-  # PENDIENTE DE CALIBRAR con una calculadora de nomina real.
-  # Formula usada: neto_mensual * pagas_anuales * factor_neto_a_bruto
-  pagas_anuales: 14
-  factor_neto_a_bruto: 1.28
-
-# ---------------------------------------------------------------------
-# CONTRATO
-# ---------------------------------------------------------------------
 contrato:
   aceptados:
     - indefinido
     - temporal
+    - contrato
+    - "full-time"
+    - "part-time"
   excluidos:
-    - practicas
     - beca
 
-# ---------------------------------------------------------------------
-# PALABRAS QUE DESCARTAN UNA OFERTA
-# Si el titulo contiene alguna de estas, la oferta se ignora aunque
-# coincida con un sinonimo. Anade las que veas que ensucian.
-# ---------------------------------------------------------------------
 exclusiones_titulo:
-  - comercial
   - teleoperador
   - teleoperadora
   - camarero
@@ -55,223 +30,227 @@ exclusiones_titulo:
   - repartidor
   - conductor
   - limpieza
-  - becario
-  - becaria
-  - practicas
-  - internship
-  - trainee
   - vendedor
   - vendedora
   - promotor
   - promotora
   - captador
   - captadora
-  - intern
-  - interna de datos
-  - stage
-  - graduate program
-  - "online data analyst"
-  - rater
-  - evaluador de busqueda
-  - encuestador
-  - encuestadora
+  - "call center"
+  - "customer service representative"
+  - cashier
+  - waiter
+  - waitress
+  - driver
 
-# ---------------------------------------------------------------------
-# NIVEL DEL PUESTO
-# No descarta nada: solo etiqueta, para que puedas apartar de un vistazo
-# lo que te queda grande o pequeno sin perderlo de vista.
-# ---------------------------------------------------------------------
 niveles:
-  directivo: [director, directora, "head of", chief, cfo, cdo, vp, "vice president"]
-  lead: [lead, manager, jefe, jefa, responsable, principal, "team lead"]
+  directivo: [director, directora, "head of", chief, coo, vp, "vice president"]
+  lead: [lead, manager, jefe, jefa, responsable, principal, coordinador, coordinadora, "team lead", supervisor, supervisora]
   senior: [senior, sr, experto, experta]
-  junior: [junior, jr, becario, trainee, graduate, "recien titulado", entry]
+  junior: [junior, jr, "entry level", "recien titulado", associate, analista]
 
-# ---------------------------------------------------------------------
-# CANALES
-#
-#  consultas_api : lo que se le pide a Adzuna. Pocas y amplias, porque
-#                  cada consulta gasta cupo de la API.
-#  grupos        : como se clasifica despues, en local y sin coste.
-#                  prioridad 1 = lo que mas te interesa, 4 = lo ultimo.
-# ---------------------------------------------------------------------
 canales:
 
   A:
-    nombre: "Economia y control de gestion"
+    nombre: "Supply Chain y Operaciones (Espanol)"
     prioridad: 1
     geografia:
       presencial_provincias:
-        - "Santa Cruz de Tenerife"
-        - "Las Palmas"
+        - "Guayas"
+        - "El Oro"
       acepta_remoto: true
       acepta_hibrido: true
-      ambito_remoto: "Espana"
+      ambito_remoto: "Ecuador"
+    # pais sugerido para esta busqueda: ec
     consultas_api:
-      - texto: "controller"
+      - texto: "analista de logistica"
         paginas: 3
-      - texto: "control de gestion"
+      - texto: "supply chain"
         paginas: 3
-      - texto: "analista financiero"
+      - texto: "analista de operaciones"
         paginas: 3
-      - texto: "analista de costes"
-        paginas: 3
-      - texto: "responsable financiero"
+      - texto: "control de inventarios"
         paginas: 2
-      # "contable" devuelve muchisimo y aporta poco: se le baja el volumen
-      - texto: "contable"
-        paginas: 1
-      - texto: "administrativo contable"
-        paginas: 1
+      - texto: "planificador de transporte"
+        paginas: 2
+      - texto: "mejora de procesos"
+        paginas: 2
     grupos:
-      - grupo: "Controller"
+      - grupo: "Supply Chain"
         prioridad: 1
         sinonimos:
-          - "controller"
-          - "controller financiero"
-          - "controller de gestion"
-          - "controller de costes"
-          - "controller industrial"
-          - "business controller"
-          - "cost controller"
-          - "financial controller"
-          - "controlling"
-      - grupo: "Control de gestion"
+          - "supply chain"
+          - "cadena de suministro"
+          - "analista de supply chain"
+          - "coordinador de supply chain"
+          - "coordinadora de supply chain"
+      - grupo: "Logistica y Transporte"
         prioridad: 1
         sinonimos:
-          - "control de gestion"
-          - "control financiero"
-          - "control economico"
-          - "control presupuestario"
-          - "analista de control de gestion"
-          - "tecnico de control de gestion"
-          - "responsable de control de gestion"
-          - "planificacion y control"
-      - grupo: "Costes"
+          - "analista de logistica"
+          - "coordinador de logistica"
+          - "coordinadora de logistica"
+          - "coordinador de transporte"
+          - "coordinadora de transporte"
+          - "planificador de transporte"
+          - "planificadora de transporte"
+          - "ruteo"
+          - "distribucion"
+      - grupo: "Operaciones"
         prioridad: 1
         sinonimos:
-          - "analista de costes"
-          - "analista de coste"
-          - "responsable de costes"
-          - "tecnico de costes"
-          - "contabilidad analitica"
-          - "escandallos"
-      - grupo: "Analisis financiero"
+          - "analista de operaciones"
+          - "analista de mejora de procesos"
+          - "mejora continua"
+          - "optimizacion de procesos"
+          - "eficiencia operativa"
+      - grupo: "Inventarios y Trazabilidad"
         prioridad: 2
         sinonimos:
-          - "analista financiero"
-          - "analista de finanzas"
-          - "financial analyst"
-          - "fp&a"
-          - "fpa"
-          - "planificacion financiera"
-          - "analista de negocio financiero"
-          - "financial reporting"
-          - "reporting financiero"
-          - "analista de reporting financiero"
-      - grupo: "Responsable financiero"
+          - "control de inventarios"
+          - "analista de inventarios"
+          - "trazabilidad"
+          - "gestion de bodega"
+          - "control de calidad"
+      - grupo: "Costos Logisticos"
         prioridad: 2
         sinonimos:
-          - "responsable financiero"
-          - "responsable de administracion"
-          - "responsable administrativo financiero"
-          - "jefe de administracion"
-          - "director financiero"
-          - "finance manager"
-      - grupo: "Contabilidad"
-        prioridad: 3
-        sinonimos:
-          - "contable"
-          - "contable general"
-          - "tecnico contable"
-          - "contable senior"
-      - grupo: "Administrativo contable"
-        prioridad: 4     # prioridad baja a proposito: suele pagar poco
-        sinonimos:
-          - "administrativo contable"
-          - "auxiliar contable"
-          - "auxiliar administrativo contable"
-          - "administrativo financiero"
+          - "analista de costos"
+          - "control de costos logisticos"
+          - "analista de costos de transporte"
 
   B:
-    nombre: "Datos y BI"
+    nombre: "Datos y BI (Espanol)"
     prioridad: 1
     geografia:
       presencial_provincias:
-        - "Santa Cruz de Tenerife"
-        - "Las Palmas"
+        - "Guayas"
+        - "El Oro"
       acepta_remoto: true
       acepta_hibrido: true
-      ambito_remoto: "Espana"
+      ambito_remoto: "Ecuador"
+    # pais sugerido para esta busqueda: ec
     consultas_api:
       - texto: "analista de datos"
         paginas: 3
-      - texto: "data analyst"
-        paginas: 3
-      - texto: "business intelligence"
-        paginas: 3
       - texto: "power bi"
         paginas: 3
-      - texto: "analytics"
-        paginas: 3
+      - texto: "business intelligence"
+        paginas: 2
+      - texto: "analista de reportes"
+        paginas: 2
     grupos:
-      - grupo: "Analista de datos"
+      - grupo: "Analista de Datos"
         prioridad: 1
         sinonimos:
           - "analista de datos"
           - "data analyst"
           - "analista de informacion"
+          - "analista de reportes"
           - "analista de reporting"
-      - grupo: "BI"
-        prioridad: 1
-        sinonimos:
-          - "analista bi"
-          - "bi analyst"
-          - "business intelligence"
-          - "analista business intelligence"
-          - "desarrollador bi"
-          - "bi developer"
-          - "consultor bi"
-          - "especialista bi"
-      - grupo: "Power BI y Fabric"
+      - grupo: "BI y Dashboards"
         prioridad: 1
         sinonimos:
           - "power bi"
-          - "analista power bi"
-          - "consultor power bi"
-          - "desarrollador power bi"
-          - "microsoft fabric"
-          - "consultor fabric"
-      - grupo: "Analytics Engineer"
+          - "business intelligence"
+          - "analista bi"
+          - "desarrollador de dashboards"
+          - "consultor bi"
+
+  C:
+    nombre: "Supply Chain and Operations (English)"
+    prioridad: 1
+    geografia:
+      presencial_provincias: []
+      acepta_remoto: true
+      acepta_hibrido: true
+      ambito_remoto: "Canada"
+    # pais sugerido para esta busqueda: ca
+    consultas_api:
+      - texto: "supply chain analyst"
+        paginas: 3
+      - texto: "operations analyst"
+        paginas: 3
+      - texto: "logistics coordinator"
+        paginas: 3
+      - texto: "inventory analyst"
+        paginas: 2
+      - texto: "process improvement"
+        paginas: 2
+    grupos:
+      - grupo: "Supply Chain"
+        prioridad: 1
+        sinonimos:
+          - "supply chain analyst"
+          - "supply chain coordinator"
+          - "supply chain specialist"
+          - "supply chain associate"
+      - grupo: "Logistics"
+        prioridad: 1
+        sinonimos:
+          - "logistics coordinator"
+          - "logistics analyst"
+          - "transportation planner"
+          - "distribution coordinator"
+          - "route planner"
+      - grupo: "Operations"
+        prioridad: 1
+        sinonimos:
+          - "operations analyst"
+          - "process improvement analyst"
+          - "continuous improvement"
+          - "operations coordinator"
+      - grupo: "Inventory and Quality"
         prioridad: 2
         sinonimos:
-          - "analytics engineer"
-          - "ingeniero analitico"
-          - "consultor de datos"
-          - "consultor de analitica"
-      - grupo: "Data Engineer"
-        prioridad: 3
+          - "inventory analyst"
+          - "inventory control"
+          - "quality control analyst"
+          - "traceability"
+      - grupo: "Cost and Procurement"
+        prioridad: 2
         sinonimos:
-          - "data engineer"
-          - "ingeniero de datos"
-          - "etl"
-          - "data warehouse"
+          - "cost analyst"
+          - "procurement analyst"
+          - "logistics cost analyst"
 
-# ---------------------------------------------------------------------
-# ALERTAS POR CORREO
-# Cuantos dias hacia atras se miran las etiquetas de Gmail. Se puede subir
-# puntualmente para recuperar correos viejos: los duplicados se descartan
-# solos, asi que no hay riesgo.
-# ---------------------------------------------------------------------
+  D:
+    nombre: "Data Analyst and BI (English)"
+    prioridad: 1
+    geografia:
+      presencial_provincias: []
+      acepta_remoto: true
+      acepta_hibrido: true
+      ambito_remoto: "Canada"
+    # pais sugerido para esta busqueda: ca
+    consultas_api:
+      - texto: "data analyst"
+        paginas: 3
+      - texto: "power bi analyst"
+        paginas: 3
+      - texto: "business intelligence analyst"
+        paginas: 2
+    grupos:
+      - grupo: "Data Analyst"
+        prioridad: 1
+        sinonimos:
+          - "data analyst"
+          - "reporting analyst"
+          - "business analyst"
+          - "data and analytics associate"
+      - grupo: "BI and Dashboards"
+        prioridad: 1
+        sinonimos:
+          - "power bi"
+          - "business intelligence"
+          - "bi analyst"
+          - "dashboard developer"
+
 correo:
   dias_atras: 30
 
-# ---------------------------------------------------------------------
-# LIMITES DE LA API
-# El plan de prueba de Adzuna tiene cupo. Estos topes evitan pasarse.
-# ---------------------------------------------------------------------
 adzuna:
-  pais: "es"
+  pais: "ec"    # cambia a "ca" si necesitas priorizar Canada en una ejecucion
   resultados_por_pagina: 50
   paginas_por_consulta: 3
   dias_maximos_antiguedad: 30
